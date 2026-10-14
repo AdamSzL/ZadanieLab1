@@ -27,7 +27,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             // TODO 2: Pass movieId to the fragment through its arguments.
             //  Never pass data through the fragment's constructor: Android recreates fragments
             //  (e.g. after rotation) using the empty constructor, and only the arguments survive.
-            //  Hint: MovieDetailsFragment().apply { arguments = bundleOf(ARG_MOVIE_ID to movieId) }
+            //  Hint: MovieDetailsFragment().apply { arguments = Bundle().apply { putInt(...) } }
             return MovieDetailsFragment()
         }
     }

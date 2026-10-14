@@ -31,11 +31,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // TODO 5a: Show the "up" arrow in the Toolbar only when the details screen is visible,
-        //  i.e. when the back stack is not empty.
+        // TODO 5a: Show the "up" arrow in the Toolbar only when the details screen is visible.
         //  Hint: supportFragmentManager.addOnBackStackChangedListener { ... }
-        //        supportFragmentManager.backStackEntryCount
+        //        supportFragmentManager.findFragmentById(R.id.fragment_container) is MovieDetailsFragment
         //        supportActionBar?.setDisplayHomeAsUpEnabled(...)
+        //  Don't rely on backStackEntryCount here: with predictive back (Android 16+) the listener
+        //  is called before the count is decremented, so the arrow would stay after pressing "back".
         //  Check: does the arrow still show correctly after rotating the screen on the details screen?
     }
 

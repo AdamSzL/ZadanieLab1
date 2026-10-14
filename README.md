@@ -6,22 +6,16 @@ filmu oraz poprawna obsługa powrotu do listy.
 
 ## Wymagania
 
-Przygotujcie środowisko **przed zajęciami**:
-- Android Studio (najnowsza stabilna wersja)
+- Android Studio Narwhal 3 Feature Drop (2025.1.3) lub nowsze (projekt używa AGP 8.13.0)
 - JDK 17 lub 21 (wystarczy JDK wbudowane w Android Studio)
 - Android SDK Platform 36 (Android 16), do zainstalowania w *Settings → Languages & Frameworks → Android SDK*
 - emulator lub fizyczne urządzenie z Androidem 7.0 (API 24) lub nowszym
 
-## Pobranie i uruchomienie projektu
+## Uruchomienie projektu
 
-1. Pobierzcie projekt:
-   ```
-   git clone https://github.com/AdamSzL/ZadanieLab1.git
-   ```
-   albo na GitHubie wybierzcie *Code → Download ZIP* i rozpakujcie archiwum.
-2. W Android Studio wybierzcie *File → Open* i wskażcie folder projektu.
-3. Poczekajcie na zakończenie synchronizacji Gradle. Przy pierwszym uruchomieniu pobierze się Gradle 8.14.3 i Build Tools, co może potrwać kilka minut.
-4. Wybierzcie urządzenie i kliknijcie **Run**.
+1. W Android Studio wybierzcie *File → Open* i wskażcie folder projektu (ten, w którym jest plik `settings.gradle.kts`).
+2. Poczekajcie na zakończenie synchronizacji Gradle. Przy pierwszym uruchomieniu pobierze się Gradle 8.14.3 i Build Tools, co może potrwać kilka minut.
+3. Wybierzcie urządzenie i kliknijcie **Run**.
 
 Powinna pojawić się lista 10 filmów. Kliknięcie filmu na razie nic nie robi i tak ma być.
 

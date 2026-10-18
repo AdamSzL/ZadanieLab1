@@ -1,62 +1,43 @@
-# Lab 1 – Filmy: lista i szczegóły
+# Lab 1: Filmy, lista i szczegóły
 
-Projekt startowy do Laboratorium 1 (podstawy Androida, layouty XML, Activity i Fragmenty).
-Aplikacja wyświetla listę filmów. Waszym zadaniem jest otwarcie ekranu szczegółów wybranego
-filmu oraz poprawna obsługa powrotu do listy.
+Projekt startowy z listą 10 filmów i miejscem na ekran szczegółów. Korzysta z Kotlin,
+layoutów XML i View Binding. Zadanie jest przewidziane na około 30 minut.
 
-## Wymagania
+## Uruchomienie
 
-- Android Studio Narwhal 3 Feature Drop (2025.1.3) lub nowsze (projekt używa AGP 8.13.0)
-- JDK 17 lub 21 (wystarczy JDK wbudowane w Android Studio)
-- Android SDK Platform 36 (Android 16), do zainstalowania w *Settings → Languages & Frameworks → Android SDK*
-- emulator lub fizyczne urządzenie z Androidem 7.0 (API 24) lub nowszym
+1. W Android Studio wybierzcie **File → Open** i otwórzcie folder z `settings.gradle.kts`.
+2. Użyjcie zgodnego Gradle JDK wybranego w ustawieniach Android Studio, np. wbudowanego
+   JDK. Projekt generuje kod JVM 17.
+3. Zainstalujcie Android SDK Platform 36 i poczekajcie na zakończenie synchronizacji Gradle.
+4. Wybierzcie emulator lub urządzenie z Androidem 7.0 (API 24) lub nowszym i kliknijcie **Run**.
 
-## Uruchomienie projektu
+Pojawi się lista filmów. W wersji startowej kliknięcie filmu jeszcze nic nie robi.
+Konfiguracja, adapter, dane, Toolbar i obsługa wcięć systemowych są już przygotowane.
 
-1. W Android Studio wybierzcie *File → Open* i wskażcie folder projektu (ten, w którym jest plik `settings.gradle.kts`).
-2. Poczekajcie na zakończenie synchronizacji Gradle. Przy pierwszym uruchomieniu pobierze się Gradle 8.14.3 i Build Tools, co może potrwać kilka minut.
-3. Wybierzcie urządzenie i kliknijcie **Run**.
+## Zadania
 
-Powinna pojawić się lista 10 filmów. Kliknięcie filmu na razie nic nie robi i tak ma być.
+Wykonajcie komentarze `TODO` w kolejności od 1 do 5.
+Pliki Kotlin znajdują się w `app/src/main/java/com/example/zadanielab1`,
+a layouty w `app/src/main/res/layout`.
 
-## Struktura projektu
-
-```
-app/src/main/
-├── java/com/example/zadanielab1/
-│   ├── MainActivity.kt              # jedyna Activity: Toolbar + FragmentContainerView
-│   ├── data/
-│   │   ├── Movie.kt                 # model danych
-│   │   └── MovieRepository.kt       # przykładowe dane
-│   └── ui/
-│       ├── list/
-│       │   ├── MovieListFragment.kt # ekran listy (RecyclerView)
-│       │   └── MovieAdapter.kt
-│       └── details/
-│           └── MovieDetailsFragment.kt
-└── res/layout/
-    ├── activity_main.xml
-    ├── fragment_movie_list.xml
-    ├── item_movie.xml
-    └── fragment_movie_details.xml
-```
-
-## Zadanie (~30 min)
-
-Znajdźcie w kodzie komentarze `TODO`. Każdy z nich zawiera krótką wskazówkę (po angielsku).
-Sugerowana kolejność to **1 → 2 → 4 → 3 → 5**, ponieważ ekran szczegółów zobaczycie dopiero po wykonaniu TODO 2 i TODO 4.
-
-| TODO | Plik | Co zrobić |
-|---|---|---|
-| 1 | `fragment_movie_details.xml` | Dodać `TextView` na opis filmu i ustawić go za pomocą constraintów. |
-| 2 | `MovieDetailsFragment.kt` | Przekazać identyfikator filmu do fragmentu przez jego argumenty w `newInstance()`. |
-| 3 | `MovieDetailsFragment.kt` | Odczytać identyfikator, pobrać film z `MovieRepository` i wyświetlić jego szczegóły. |
-| 4 | `MovieListFragment.kt` | Otworzyć ekran szczegółów transakcją fragmentu (`replace` + `addToBackStack`). |
-| 5 | `MainActivity.kt` | Pokazać strzałkę „wstecz” w Toolbarze na ekranie szczegółów i obsłużyć jej kliknięcie (`popBackStack`). |
+1. **Uzupełnijcie layout szczegółów** (`fragment_movie_details.xml`). Dodajcie `TextView`
+   opisu z ID `text_description`, szerokością `0dp`, constraintami start/end/top,
+   odstępem pod reżyserem i tekstem podglądu `tools:text`. Kontener przewijania jest gotowy.
+2. **Przekażcie ID filmu** (`ui/details/MovieDetailsFragment.kt`, `newInstance`).
+   Zapiszcie ID w argumentach fragmentu przez `Bundle.putInt`, używając `ARG_MOVIE_ID`.
+3. **Otwórzcie szczegóły** (`ui/list/MovieListFragment.kt`, `openDetails`).
+   W transakcji `parentFragmentManager.commit` włączcie `setReorderingAllowed(true)`,
+   zastąpcie listę w `fragment_container` przez `replace` i użyjcie `addToBackStack(null)`.
+4. **Wyświetlcie wybrany film** (`ui/details/MovieDetailsFragment.kt`, `onViewCreated`).
+   Odczytajcie ID, pobierzcie film z `MovieRepository` i uzupełnijcie przez View Binding
+   tytuł, rok/gatunek, reżysera, ocenę i opis. Użyjcie gotowych zasobów formatujących tekst.
+5. **Obsłużcie powrót** (`MainActivity.kt`). Pokazujcie strzałkę Toolbar Up tylko na
+   szczegółach. Sprawdzajcie aktualny fragment po zmianie stosu oraz przy tworzeniu Activity,
+   także po obrocie. Kliknięcie strzałki powinno wywołać `popBackStack`.
 
 ## Oczekiwany efekt
 
-- Kliknięcie filmu na liście otwiera jego szczegóły: tytuł, rok, gatunek, ocenę, reżysera i opis.
-- Systemowy przycisk „wstecz” wraca do listy.
-- Na ekranie szczegółów Toolbar pokazuje strzałkę „wstecz”, która również wraca do listy. Na liście strzałka nie jest widoczna.
-- Po obróceniu ekranu na ekranie szczegółów nadal wyświetla się ten sam film i strzałka.
+Kliknięcie dowolnego filmu otwiera jego szczegóły. Systemowy Wstecz i strzałka w Toolbarze
+przywracają listę, na której strzałka znika. Obrót ekranu zachowuje wybrany film i poprawny
+stan strzałki, a na liście nie dodaje kolejnego fragmentu. Opis można przewinąć również
+w orientacji poziomej i przy większym rozmiarze tekstu.

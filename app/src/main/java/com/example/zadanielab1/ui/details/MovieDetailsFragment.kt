@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.zadanielab1.R
+import com.example.zadanielab1.data.MovieRepository
 import com.example.zadanielab1.databinding.FragmentMovieDetailsBinding
 
 class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
@@ -12,26 +13,25 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentMovieDetailsBinding.bind(view)
 
-        // TODO 4: Display the details of the selected movie using the local binding.
-        //  - read the movie id from the fragment's arguments (key: ARG_MOVIE_ID),
-        //  - get the movie with MovieRepository.getMovieById(...),
-        //  - populate textTitle, textSubtitle, textDirector, textRating and textDescription
-        //    (the last binding property is generated after you add the view in TODO 1).
-        //  Hint: requireArguments().getInt(ARG_MOVIE_ID)
-        //        Use binding properties and the movie's fields to set each view's text.
-        //        Format year/genre, director and rating with getString and the existing
-        //        R.string.movie_year_genre, movie_director and movie_rating resources.
+        // Task 4: map the selected movie onto the details views.
+        val movieId = requireArguments().getInt(ARG_MOVIE_ID)
+        val movie = MovieRepository.getMovieById(movieId) ?: return
+
+        binding.textTitle.text = movie.title
+        binding.textSubtitle.text = getString(R.string.movie_year_genre, movie.year, movie.genre)
+        binding.textDirector.text = getString(R.string.movie_director, movie.director)
+        binding.textRating.text = getString(R.string.movie_rating, movie.rating)
+        binding.textDescription.text = movie.description
     }
 
     companion object {
         const val ARG_MOVIE_ID = "movie_id"
 
         fun newInstance(movieId: Int): MovieDetailsFragment {
-            // TODO 2: Pass movieId to the fragment through its arguments.
-            //  Never pass data through the fragment's constructor: Android recreates fragments
-            //  (e.g. after rotation) using the empty constructor, and only the arguments survive.
-            //  Create a Bundle, use putInt with ARG_MOVIE_ID, and set the fragment's arguments.
-            return MovieDetailsFragment()
+            // Task 2: arguments preserve the selected ID when Android recreates the fragment.
+            return MovieDetailsFragment().apply {
+                arguments = Bundle().apply { putInt(ARG_MOVIE_ID, movieId) }
+            }
         }
     }
 }

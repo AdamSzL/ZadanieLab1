@@ -54,14 +54,17 @@
             app:layout_constraintTop_toBottomOf="@id/text_subtitle"
             tools:text="Directed by Christopher Nolan" />
 
-        <!--
-            TODO 1: Add a TextView with id "text_description" for the movie description.
-             - place it below text_director (16dp margin) and stretch it between the parent's edges
-               (layout_width="0dp" + constraints to start and end of the parent),
-             - use android:textAppearance="?attr/textAppearanceBodyLarge",
-             - add tools:text with a sample description to see the result in the Design preview.
-            Hint: look at how text_director is constrained.
-        -->
+        <!-- Task 1: movie description below the director. -->
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_director"
+            tools:text="A thief who steals secrets from dreams is given the opposite task: planting an idea in someone's mind." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

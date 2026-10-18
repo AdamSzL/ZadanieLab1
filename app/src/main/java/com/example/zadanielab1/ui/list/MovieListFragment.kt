@@ -3,10 +3,12 @@ package com.example.zadanielab1.ui.list
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zadanielab1.R
 import com.example.zadanielab1.data.MovieRepository
 import com.example.zadanielab1.databinding.FragmentMovieListBinding
+import com.example.zadanielab1.ui.details.MovieDetailsFragment
 
 class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
@@ -21,11 +23,11 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     }
 
     private fun openDetails(movieId: Int) {
-        // TODO 3: Navigate to MovieDetailsFragment.
-        //  - create the fragment with MovieDetailsFragment.newInstance(movieId) (TODO 2),
-        //  - replace the current fragment in R.id.fragment_container,
-        //  - add the transaction to the back stack, so the system "back" button returns to the list.
-        //  Hint: parentFragmentManager.commit { ... } (androidx.fragment.app.commit)
-        //        with setReorderingAllowed(true), replace(...) and addToBackStack(null) inside.
+        // Task 3: open details and keep the transaction for return navigation.
+        parentFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace(R.id.fragment_container, MovieDetailsFragment.newInstance(movieId))
+            addToBackStack(null)
+        }
     }
 }

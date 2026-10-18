@@ -1,7 +1,7 @@
 # Lab 1: Filmy, lista i szczegóły
 
-Projekt startowy z listą 10 filmów i miejscem na ekran szczegółów. Korzysta z Kotlin,
-layoutów XML i View Binding. Zadanie jest przewidziane na około 30 minut.
+Ukończone rozwiązanie zadania z listą 10 filmów i ekranem szczegółów. Korzysta z Kotlin,
+layoutów XML i View Binding. Poniżej pozostawiono kontekst ćwiczenia przewidzianego na około 30 minut.
 
 ## Uruchomienie
 
@@ -11,12 +11,13 @@ layoutów XML i View Binding. Zadanie jest przewidziane na około 30 minut.
 3. Zainstalujcie Android SDK Platform 36 i poczekajcie na zakończenie synchronizacji Gradle.
 4. Wybierzcie emulator lub urządzenie z Androidem 7.0 (API 24) lub nowszym i kliknijcie **Run**.
 
-Pojawi się lista filmów. W wersji startowej kliknięcie filmu jeszcze nic nie robi.
+Pojawi się lista filmów. Kliknięcie filmu otwiera jego szczegóły.
 Konfiguracja, adapter, dane, Toolbar i obsługa wcięć systemowych są już przygotowane.
 
 ## Zadania
 
-Wykonajcie komentarze `TODO` w kolejności od 1 do 5.
+W wersji startowej zadania `TODO` wykonuje się w kolejności od 1 do 5.
+Na tej gałęzi wszystkie są ukończone i oznaczone komentarzami `Task`.
 Pliki Kotlin znajdują się w `app/src/main/java/com/example/zadanielab1`,
 a layouty w `app/src/main/res/layout`.
 

@@ -55,5 +55,5 @@ Z terminala można uruchomić cały zestaw testów urządzenia:
 Testy `MovieExerciseTest` celowo nie przechodzą w wersji startowej. Sprawdzają opis,
 argumenty, wybrany film, powrót oraz odtworzenie Activity. Komunikaty wskazują odpowiednie
 zadania. Część testów wymaga wykonania wcześniejszych zadań, zwłaszcza otwierania szczegółów.
-Po ukończeniu ćwiczenia wszystkie powinny przechodzić. Ten sam zestaw jest na gałęzi `solution`.
+Po ukończeniu ćwiczenia wszystkie powinny przechodzić.
 Test `MainActivityTest` sprawdza gotową listę i powinien przechodzić już w starterze.
